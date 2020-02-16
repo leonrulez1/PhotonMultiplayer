@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
          horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        print("walk");
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;

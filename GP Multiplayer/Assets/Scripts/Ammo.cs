@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Ammo : MonoBehaviour
 {
     public float speed = 20f;
     public int damage = 30;
@@ -23,6 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(gameObject);  
+        Destroy(gameObject);
+        
     }
 }
