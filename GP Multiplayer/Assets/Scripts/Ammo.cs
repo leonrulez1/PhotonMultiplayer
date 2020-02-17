@@ -22,7 +22,7 @@ public class Ammo : MonoBehaviour
             boss.TakeDamage(damage);
         }
 
-        Instantiate(impactEffect, transform.position, transform.rotation);
+        Destroy( Instantiate(impactEffect, transform.position, transform.rotation), 2f );
         Destroy(gameObject);
         
     }
