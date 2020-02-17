@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     public GameObject projectile;
     public GameObject[] firePoints;
     public GameObject[] spikes;
+    public GameObject[] meteorPoints;
     public List<string> possibleAttacks = new List<string>() { "Horizontal" };
 
     public enum BossType { one, two, three }
@@ -28,14 +29,18 @@ public class Boss : MonoBehaviour
         if (health <= 0)
         {
             Die();
-        } else if (health <= 500)
-        {
-            possibleAttacks.Add("Up");
-            print("Up");
         }
         else if (health <= 200)
         {
-            possibleAttacks.Add("Down");
+            if (!possibleAttacks.Contains("Down"))
+                possibleAttacks.Add("Down");
+            print("Down");
+        }
+        else if (health <= 500)
+        {
+            if(!possibleAttacks.Contains("Up"))
+                possibleAttacks.Add("Up");
+            print("Up");
         }
     }
     
@@ -62,6 +67,7 @@ public class Boss : MonoBehaviour
                 break;
 
             case "Down":
+                StartCoroutine(Down());
                // Instantiate(projectile, firePoints.transform.position, firePoint1.transform.rotation);
                 print("Down");
                 break;
@@ -98,12 +104,19 @@ public class Boss : MonoBehaviour
         for (int i = 0; i < spikes.Length; i++)
         {
             yield return new WaitForSeconds(0.4f);
-            Collider2D c = GetComponent<Collider2D>();
-            c.enabled = true;
+            spikes[i].SetActive(true);
             yield return new WaitForSeconds(0.2f);
-            c.enabled = false;
+            spikes[i].SetActive(false);
 
 
+        }
+    }
+    IEnumerator Down()
+    {
+        for (int i = 0; i < meteorPoints.Length; i++)
+        {
+            yield return new WaitForSeconds(0.4f);
+            Instantiate(projectile, meteorPoints[i].transform.position, meteorPoints[i].transform.rotation);
         }
     }
 }
