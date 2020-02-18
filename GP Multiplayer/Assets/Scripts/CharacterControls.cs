@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+
 
 public class CharacterControls : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class CharacterControls : MonoBehaviour
     [SerializeField] private Transform groundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform ceilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D crouchDisable;                // A collider that will be disabled when crouching
+    
 
     const float groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool grounded;            // Whether or not the player is grounded.
@@ -20,11 +23,13 @@ public class CharacterControls : MonoBehaviour
     private Rigidbody2D rb;
     private bool facingRight = true;  // For determining which way the player is currently facing.
     private Vector3 velocity = Vector3.zero;
+ 
 
     [Header("Events")]
     [Space]
 
     public UnityEvent onLandEvent;
+    
 
     //[System.Serializable]
     //public class BoolEvent : UnityEvent<bool> { }
@@ -43,6 +48,10 @@ public class CharacterControls : MonoBehaviour
         //    onCrouch = new BoolEvent();
     }
 
+   
+    
+
+
     private void FixedUpdate()
     {
         bool wasGrounded = grounded;
@@ -56,10 +65,12 @@ public class CharacterControls : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 grounded = true;
-                if (!wasGrounded)
+                if (!wasGrounded && rb.velocity.y < 0)
                     onLandEvent.Invoke();
             }
+            
         }
+
     }
 
 
