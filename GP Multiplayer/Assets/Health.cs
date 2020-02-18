@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
     public Sprite emptyHeart;
     public Sprite fullHeart;
     public GameObject player;
+    Coroutine storeRoutine;
 
     // Start is called before the first frame update
     void Start()
@@ -63,5 +64,22 @@ public class Health : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         player.active = false;
+    }
+
+
+
+
+    IEnumerator ChangeColour()
+    {
+        yield return new WaitForSeconds(1f);
+        print("Test");
+    }
+    void ExampleTakeDamage()
+    {
+        if(storeRoutine != null)
+        {
+            StopCoroutine(storeRoutine);
+        }
+        storeRoutine = StartCoroutine(ChangeColour());
     }
 }
