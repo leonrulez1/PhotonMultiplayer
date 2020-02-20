@@ -11,15 +11,16 @@ public class Laser : MonoBehaviour
     void Start()
     {
         line = GetComponent<LineRenderer>();
-        line.enabled = false;
+        line.enabled = true;
         line.useWorldSpace = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
-        hitPoint.position = hit.point;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.localEulerAngles);
+        //Debug.DrawLine(transform.position, hit.point);
+        //hitPoint.position = hit.point;
         line.SetPosition(0, transform.position);
         line.SetPosition(1, hitPoint.position);
         
