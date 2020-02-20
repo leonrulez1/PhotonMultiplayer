@@ -29,9 +29,10 @@ public class NetworkController: MonoBehaviourPunCallbacks
     {
         if (BtnConnectMaster != null)
             BtnConnectMaster.gameObject.SetActive(!PhotonNetwork.IsConnected && !TriesToConnectToMaster);
-
+        /*
         if (BtnConnectRoom != null)
             BtnConnectRoom.gameObject.SetActive(PhotonNetwork.IsConnected && !TriesToConnectToMaster && !TriesToConnectToRoom);
+        */  
     }
 
     public void OnClickConnectToMaster()
@@ -75,6 +76,7 @@ public class NetworkController: MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();               //Join a random Room     - Error: OnJoinRandomRoomFailed  
     }
 
+    /*
     public override void OnJoinRandomFailed(short returnCode, string message)       // Negative or Failed to join Room
     {
         base.OnJoinRandomFailed(returnCode, message);
@@ -83,6 +85,7 @@ public class NetworkController: MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 20 });
     }
 
+    
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
@@ -97,5 +100,6 @@ public class NetworkController: MonoBehaviourPunCallbacks
         TriesToConnectToRoom = false;
         Debug.Log("Master: " + PhotonNetwork.IsMasterClient + " | Players In Room: " + PhotonNetwork.CurrentRoom.PlayerCount + " | RoomName: " + PhotonNetwork.CurrentRoom.Name);
         SceneManager.LoadScene("Level1");
-    }
+    }*/
+
 }
