@@ -53,6 +53,7 @@ public class NetworkController: MonoBehaviourPunCallbacks
         base.OnConnectedToMaster();
         TriesToConnectToMaster = false;
         connectedToTheServer.SetActive(true);
+        PhotonNetwork.JoinLobby();
         Debug.Log("Connected to Master!");
     }
 
@@ -75,6 +76,8 @@ public class NetworkController: MonoBehaviourPunCallbacks
         //PhotonNetwork.JoinRoom("Jesper's Game 1");   //Join a specific Room   - Error: OnJoinRoomFailed  
         PhotonNetwork.JoinRandomRoom();               //Join a random Room     - Error: OnJoinRandomRoomFailed  
     }
+
+    #region Moved to UIHandler Script
 
     /*
     public override void OnJoinRandomFailed(short returnCode, string message)       // Negative or Failed to join Room
@@ -101,5 +104,7 @@ public class NetworkController: MonoBehaviourPunCallbacks
         Debug.Log("Master: " + PhotonNetwork.IsMasterClient + " | Players In Room: " + PhotonNetwork.CurrentRoom.PlayerCount + " | RoomName: " + PhotonNetwork.CurrentRoom.Name);
         SceneManager.LoadScene("Level1");
     }*/
+
+    #endregion
 
 }

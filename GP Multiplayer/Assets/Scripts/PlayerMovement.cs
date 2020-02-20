@@ -13,12 +13,17 @@ public class PlayerMovement : MonoBehaviourPun
     public Animator animator;
     public PhotonView pv;
     Vector3 smoothMove;
-    // Start is called before the first frame update
+
+    private GameObject sceneCamera;
+    public GameObject playerCamera;
+
     void Start()
     {
         if(photonView.IsMine)
         {
-            
+            playerCamera = GameObject.Find("Main Camera");
+            sceneCamera.SetActive(false);
+            playerCamera.SetActive(true); 
         }
     }
 

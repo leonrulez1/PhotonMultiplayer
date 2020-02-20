@@ -11,9 +11,18 @@ public class UIHandler : MonoBehaviourPunCallbacks
     public InputField createRoomTF;
     public InputField joinRoomTF;
 
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        print("Connected to lobby");
+        //createRoomTF.text = PhotonNetwork.CurrentLobby.IsDefault.ToString();      // Check if Lobby is true.
+    }
+
     public void OnClick_JoinRoom()
     {
-        PhotonNetwork.JoinRoom(joinRoomTF.text, null);
+        print(joinRoomTF.text);
+        PhotonNetwork.JoinRoom(joinRoomTF.text);
+        print("joined");
     }
 
     public void OnClick_CreateRoom()
@@ -24,14 +33,15 @@ public class UIHandler : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        Debug.Log("Successfully joined room!");
+        print(PhotonNetwork.CurrentRoom.Name + PhotonNetwork.CurrentRoom.PlayerCount);
+        print("Successfully joined room!");
         PhotonNetwork.LoadLevel(1);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         base.OnJoinRoomFailed(returnCode, message);
-        Debug.Log("Failed to join room" + returnCode + "Message" + message);
+        print("Failed to join room" + returnCode + "Message" + message);
     }
 
 
