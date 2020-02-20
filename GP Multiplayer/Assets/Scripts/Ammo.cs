@@ -32,16 +32,16 @@ public class Ammo : MonoBehaviour
         Destroy(gameObject);
                 break;
 
-            case ammoType.two:
-                Health hp = collision.GetComponent<Health>();
-                if (hp != null)
-                {
-                    print("hit");
-                    hp.TakeDamage();
-                }
-                Destroy(Instantiate(impactEffect, transform.position, transform.rotation), 2f);
-                Destroy(gameObject);
-                break;
+            //case ammoType.two:
+            //    //Health hp = collision.GetComponent<Health>();
+            //    if (hp != null)
+            //    {
+            //        print("hit");
+            //        //hp.TakeDamage();
+            //    }
+            //    Destroy(Instantiate(impactEffect, transform.position, transform.rotation), 2f);
+            //    Destroy(gameObject);
+            //    break;
         }
        
         

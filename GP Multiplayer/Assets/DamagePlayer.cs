@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
 {
-    public Health hp;
+    //public Health hp;
     public int damage = 1;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class DamagePlayer : MonoBehaviour
       if (collision.CompareTag("Player"))
         {
             print("spiked");
-            hp.TakeDamage();
+           // hp.TakeDamage();
         }
     }
 }
