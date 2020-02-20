@@ -12,6 +12,9 @@ public class NetworkController: MonoBehaviourPunCallbacks
     public Button BtnConnectMaster;
     public Button BtnConnectRoom;
 
+    public GameObject connectedToTheServer;
+    public GameObject disconnectedFromTheServer;
+
     public bool TriesToConnectToMaster;
     public bool TriesToConnectToRoom;
    
@@ -48,6 +51,7 @@ public class NetworkController: MonoBehaviourPunCallbacks
     {
         base.OnConnectedToMaster();
         TriesToConnectToMaster = false;
+        connectedToTheServer.SetActive(true);
         Debug.Log("Connected to Master!");
     }
 
@@ -56,6 +60,7 @@ public class NetworkController: MonoBehaviourPunCallbacks
         base.OnDisconnected(cause);
         TriesToConnectToMaster = false;
         TriesToConnectToRoom = false;
+        disconnectedFromTheServer.SetActive(true);
         Debug.Log(cause);
     }
 
