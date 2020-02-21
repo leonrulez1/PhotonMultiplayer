@@ -16,12 +16,28 @@ public class MenuManager : MonoBehaviourPunCallbacks {
     [SerializeField]
     private InputField UserNameInput, CreateRoomInput, JoinRoomInput;
 
+    #region MainStart
+    public GameObject MainStartMenu;
+    bool hasMainStart;     
 
+    /*
     void Awake()
     {
         //Connect to server using the PhotonServerSettings
-        PhotonNetwork.ConnectUsingSettings();
+        //PhotonNetwork.ConnectUsingSettings();
+        mainStart = false;
+    }*/    
+
+    void Update()
+    {     
+        if (Input.GetKeyDown(KeyCode.Space) && hasMainStart == false)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            hasMainStart = true;
+            MainStartMenu.SetActive(false);
+        }
     }
+    #endregion
 
     // Called when the client is connected to the Master Server and ready for matchmaking and other tasks.
     public override void OnConnectedToMaster()
