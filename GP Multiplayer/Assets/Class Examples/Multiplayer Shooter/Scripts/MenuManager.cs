@@ -18,7 +18,8 @@ public class MenuManager : MonoBehaviourPunCallbacks {
 
     #region MainStart
     public GameObject MainStartMenu;
-    bool hasMainStart;     
+    bool hasMainStart;
+    DisManager dm;
 
     /*
     void Awake()
@@ -26,11 +27,16 @@ public class MenuManager : MonoBehaviourPunCallbacks {
         //Connect to server using the PhotonServerSettings
         //PhotonNetwork.ConnectUsingSettings();
         mainStart = false;
-    }*/    
+    }*/
+
+    void Start()
+    {
+        dm = FindObjectOfType<DisManager>();
+    }
 
     void Update()
     {     
-        if (Input.GetKeyDown(KeyCode.Space) && hasMainStart == false)
+        if (Input.GetKeyDown(KeyCode.Space) && hasMainStart == false && dm.disconnectedFromTheGame == false)
         {
             PhotonNetwork.ConnectUsingSettings();
             hasMainStart = true;
